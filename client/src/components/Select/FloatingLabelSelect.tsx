@@ -7,12 +7,12 @@ interface FloatingLabelSelectProps {
     newLabelClassName: string;
     labelClassName: string;
     name?: string;
-    value?: string | any;
+    value?: string;
     onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
     required?: boolean;
     autoFocus?: boolean;
     disabled?: boolean;
-    errors?: [string]
+    errors?: [string];
     children: ReactNode;
 }
 
@@ -50,10 +50,10 @@ const FloatingLabelSelect: FC<FloatingLabelSelectProps> = ({
                 >
                     {children}
                 </select>
-                <label htmlFor={name} className={newLabelClassName ? newLabelClassName : `absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] 
+                <label htmlFor={name} className={newLabelClassName ? newLabelClassName : `absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left
                     bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
                     peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 
-                    peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1} ${labelClassName}`}>
+                    peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto inset-s-1} ${labelClassName}`}>
                     {label}
                     {required && (
                         <span className="text-red-600 ml-1 ">*</span>

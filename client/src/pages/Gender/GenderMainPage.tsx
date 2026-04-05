@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import AddGenderForm from "./components/AddGenderForm";
 import GenderList from "./components/GenderList";
 
-const MainPage = () => {
-    useEffect(() => { 
-         document.title = "Gender Main Page";
+const GenderMainPage = () => {
+    useEffect(() => {
+        document.title = "Gender Main Page";
     }, []);
 
     return (
@@ -22,4 +22,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default GenderMainPage

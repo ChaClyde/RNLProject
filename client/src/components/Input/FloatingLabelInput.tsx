@@ -4,7 +4,7 @@ interface FloatingLabelinputProps {
     label: string;
     type: 'text' | 'date' | 'password';
     name: string;
-    value?: string | any;
+    value?: string;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     newLabelClassName?: string;
     labelClassName?: string;
@@ -13,7 +13,7 @@ interface FloatingLabelinputProps {
     required?: boolean;
     autoFocus?: boolean;
     disabled?: boolean;
-    readonly?: boolean;
+    readOnly?: boolean;
     errors?: string[];
 }
 
@@ -29,7 +29,7 @@ const FloatingLabelInput: FC<FloatingLabelinputProps> = ({ label, type, name, va
                     onChange={onChange}
                     className={`${newInputClassName
                         ? newInputClassName
-                        : `block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 
+                        : `block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border
               border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:to-blue-600 peer ${inputClassName}`
                         } `}
                     placeholder=" "
@@ -40,10 +40,10 @@ const FloatingLabelInput: FC<FloatingLabelinputProps> = ({ label, type, name, va
                 />
                 <label
                     htmlFor={name}
-                    className={`${newLabelClassName ? newLabelClassName : `absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] 
+                    className={`${newLabelClassName ? newLabelClassName : `absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left
                     bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
                     peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 
-                    peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 ${labelClassName}`
+                    peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto inset-s-1 ${labelClassName}`
                         }`}
                 >
                     {label}
