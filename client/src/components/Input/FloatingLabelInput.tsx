@@ -17,7 +17,22 @@ interface FloatingLabelinputProps {
     errors?: string[];
 }
 
-const FloatingLabelInput: FC<FloatingLabelinputProps> = ({ label, type, name, value, onChange, newLabelClassName, labelClassName, newInputClassName, inputClassName, required, autoFocus, disabled, readOnly, errors }) => {
+const FloatingLabelInput: FC<FloatingLabelinputProps> = ({ 
+    label, 
+    type, 
+    name, 
+    value, 
+    onChange, 
+    newLabelClassName, 
+    labelClassName, 
+    newInputClassName, 
+    inputClassName, 
+    required, 
+    autoFocus, 
+    disabled, 
+    readOnly, 
+    errors }) => {
+
     return (
         <>
             <div className="relative">
@@ -33,7 +48,6 @@ const FloatingLabelInput: FC<FloatingLabelinputProps> = ({ label, type, name, va
               border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:to-blue-600 peer ${inputClassName}`
                         } `}
                     placeholder=" "
-                    required={required}
                     autoFocus={autoFocus}
                     disabled={disabled}
                     readOnly={readOnly}
@@ -52,7 +66,7 @@ const FloatingLabelInput: FC<FloatingLabelinputProps> = ({ label, type, name, va
 
                 </label>
                 {errors && errors.length > 0 && (
-                    <span className="text-red-600">{errors[0]}</span>
+                    <span className="text-red-600 text-xs">{errors[0]}</span>
                 )}
             </div>
         </>
