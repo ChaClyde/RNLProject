@@ -1,68 +1,44 @@
-import { Link } from "react-router";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "../../../components/Table";
-const GenderList = () => {
-    const genders = [
-        {
-            gender_id: 1,
-            gender: "Male",
-            action: (
-                <>
-                    <div className=" flex gap-4">
-                        <div>
-                            <Link to="/gender/edit" className="text-green-600 hover:underline font-medium">
-                                Edit
-                            </Link>
-                        </div>
-                        <div>
-                            <Link to="/gender/delete" className="text-red-600 hover:underline font-medium">
-                                Delete
-                            </Link>
-                        </div>
-                    </div>
-                </>
-            )
-        },
-        {
-            gender_id: 2,
-            gender: "Female",
-            action: (
-                <>
-                    <div className=" flex gap-4">
-                        <div>
-                            <Link to="/gender/edit" className="text-green-600 hover:underline font-medium">
-                                Edit
-                            </Link>
-                        </div>
-                        <div>
-                            <Link to="/gender/delete" className="text-red-600 hover:underline font-medium">
-                                Delete
-                            </Link>
-                        </div>
-                    </div>
-                </>
-            )
-        },
-        {
-            gender_id: 3,
-            gender: "Prefer not to say",
-            action: (
-                <>
-                    <div className=" flex gap-4">
-                        <div>
-                        <Link to="/gender/edit" className="text-green-600 hover:underline font-medium">
-                            Edit
-                        </Link>
-                        </div>
-                        <div>
-                            <Link to="/gender/delete" className="text-red-600 hover:underline font-medium">
-                            Delete
-                        </Link>
-                        </div>
-                    </div>
-                </>
-            )
+
+import { useEffect, useState, type FC } from "react";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHeader,
+    TableRow
+} from "../../../components/Table";
+import type { GenderColumns } from "../../../interfaces/GendersColumns";
+import GenderService from "../../../services/GenderService";
+import Spinner from "../../../components/Spinner/Spinner";
+
+interface GenderListProps {
+    refreshKey: boolean
+}
+const GenderList: FC<GenderListProps> = ({ refreshKey }) => {
+    const [loadingGenders, setLoadingGenders] = useState(false);
+    const [genders, setGenders] = useState<GenderColumns[]>([]);
+
+    const handleLoadGenders = async () => {
+        try {
+            setLoadingGenders(true);
+
+            const res = await GenderService.loadGenders()
+
+            if (res.status === 200) {
+                setGenders(res.data.genders)
+            } else {
+                console.error('Unexpected status error occured during loading genders: ', res.status)
+            }
+        } catch (error) {
+            console.error('Unexpected server error occured during loading genders: ', error)
+        } finally {
+            setLoadingGenders(false);
         }
-    ]
+    };
+
+    useEffect(() => {
+        handleLoadGenders();
+    }, [refreshKey])
 
     return (
         <>
@@ -77,31 +53,34 @@ const GenderList = () => {
                                 >
                                     No.
                                 </TableCell>
-                                 <TableCell
+                                <TableCell
                                     isHeader
-                                    className="px-5 py-3 font-medium text-center"
+                                    className="px-5 py-3 font-medium text-start"
                                 >
                                     Gender
                                 </TableCell>
-                                <TableCell
+                                {/* <TableCell
                                     isHeader
                                     className="px-5 py-3 font-medium text-center"
                                 >
                                     Action
-                                </TableCell>
+                                </TableCell> */}
                             </TableRow>
                         </TableHeader>
                         <TableBody className="divide-y divide-gray-100 text-gray-500 text-sm">
-                            {genders.map((gender, index) => (
+                            {loadingGenders ? (
+                                <TableRow>
+                                    <TableCell colSpan={2} className="px-4 py-3 text-center">
+                                        <Spinner size="md" />
+                                    </TableCell>
+                                </TableRow>
+                            ) : genders.map((genders, index) => (
                                 <TableRow className="hover:bg-gray-100" key={index}>
                                     <TableCell className="px-4 py-3 text-center">
-                                        {gender.gender_id}
+                                        {index + 1}
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-start">
-                                        {gender.gender}
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-start">
-                                        {gender.action}
+                                        {genders.gender}
                                     </TableCell>
                                 </TableRow>
                             ))}
