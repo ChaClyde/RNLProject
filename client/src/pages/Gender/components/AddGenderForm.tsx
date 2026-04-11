@@ -12,7 +12,7 @@ interface AddGenderFormProps {
 
 const AddGenderForm: FC<AddGenderFormProps> = ({ onGenderAdded, refreshKey }) => {
     const [loadingStore, setLoadingStore] = useState(false);
-    const [gender, setGender] = useState('')
+    const [gender, setGender] = useState(" ")
     const [errors, setErrors] = useState<GenderFieldErrors>({});
 
 
@@ -22,11 +22,11 @@ const AddGenderForm: FC<AddGenderFormProps> = ({ onGenderAdded, refreshKey }) =>
 
             setLoadingStore(true);
 
-            const res = await GenderService.storeGender({ gender })
+            const res = await GenderService.storeGender({gender})
 
             if (res.status === 200) {
                 setGender('')
-                setErrors({})
+                setErrors({}) 
 
                 onGenderAdded(res.data.message)
                 refreshKey();
@@ -48,18 +48,18 @@ const AddGenderForm: FC<AddGenderFormProps> = ({ onGenderAdded, refreshKey }) =>
     };
 
     return (
-        <>
+            <>
             <form onSubmit={handleStoreGender}>
                 <div className="mb-4">
-                    <FloatingLabelInput
-                        label="Gender"
-                        type="text"
-                        name="gender"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                        required
-                        autoFocus
-                        errors={errors.gender}
+                    <FloatingLabelInput 
+                    label="Gender" 
+                    type="text" 
+                    name="gender" 
+                    value={gender} 
+                    onChange={(e) => setGender(e.target.value) } 
+                    required 
+                    autoFocus 
+                    errors={errors.gender}
                     />
                 </div>
                 <div className="flex justify-end">

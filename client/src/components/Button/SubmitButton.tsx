@@ -9,9 +9,9 @@ interface SubmitButtonProps {
     loadingLabel: string;
 }
 
-const SubmitButton: FC<SubmitButtonProps> = ({ 
-    label, 
-    newClassName, 
+const SubmitButton: FC<SubmitButtonProps> = ({
+    label,
+    newClassName,
     className,
     loading,
     loadingLabel
@@ -21,21 +21,21 @@ const SubmitButton: FC<SubmitButtonProps> = ({
             <button
                 type="submit"
                 className={` ${newClassName ?
-                        newClassName
-                        : ` px-4 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-medium cursor-pointer rounded-lg shadow-lg ${className} 
+                    newClassName
+                    : ` px-4 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-medium cursor-pointer rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${className} 
          `}`}
-         disabled={loading}
-         >
+                disabled={loading}
+            >
                 {loading ? (
-                <>
-                <div className="flex gap-1">
-                    <div>{<Spinner size='xs' />}</div>
-                    {loadingLabel}
-                </div>
-                </>
-            ) : ( 
-                label
-            )}
+                    <>
+                        <div className="flex gap-1">
+                            <div>{<Spinner size='xs' />}</div>
+                            {loadingLabel}
+                        </div>
+                    </>
+                ) : (
+                    label
+                )}
             </button>
         </>
     );
