@@ -34,7 +34,7 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ onUserAdded, isOpen, onCl
     const handleStoreUser = async (e: FormEvent) => {
         try {
             e.preventDefault()
- 
+
             setLoadingStore(true)
 
             const payload = {
@@ -54,16 +54,18 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ onUserAdded, isOpen, onCl
             if (res.status === 200) {
                 onUserAdded(res.data.message)
 
-                setFirstName('')
-                setMiddleName('')
-                setLastName('')
-                setSuffixName('')
-                setGender('')
-                setBirthDate('')
-                setUsername('')
-                setPassword('')
-                setPasswordConfirmation('')
-                setErrors({})
+                setFirstName("");
+                setMiddleName("");
+                setLastName("");
+                setSuffixName("");
+                setGender("");
+                setBirthDate("");
+                setUsername("");
+                setPassword("");
+                setPasswordConfirmation("");
+                setErrors({});
+
+                handleLoadGenders();
             } else {
                 console.error('Unexpected status error occured during adding user: ', res.status)
             }
@@ -97,8 +99,10 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ onUserAdded, isOpen, onCl
     };
 
     useEffect(() => {
-        handleLoadGenders()
-    }, [])
+        if (isOpen) {
+            handleLoadGenders();
+        }
+    }, [isOpen]);
 
     return (
         <>
@@ -158,14 +162,20 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ onUserAdded, isOpen, onCl
                                     value={gender}
                                     onChange={(e) => setGender(e.target.value)}
                                     required
-                                    errors={errors.gender} 
+                                    errors={errors.gender}
                                 >
-                                    <option value="">Select Gender</option>
                                     {loadingGenders ? (
                                         <option value="">Loading...</option>
-                                    ) : genders.map((gender, index) => (
-                                        <option value={gender.gender_id} key={index}>{gender.gender}</option>
-                                    ))}
+                                    ) : (
+                                        <>
+                                            <option value="">Select Gender</option>
+                                            {genders.map((gender, index) => (
+                                                <option value={gender.gender_id} key={index}>
+                                                    {gender.gender}
+                                                </option>
+                                            ))}
+                                        </>
+                                    )}
                                 </FloatingLabelSelect>
                             </div>
 
@@ -223,10 +233,10 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ onUserAdded, isOpen, onCl
                         {!loadingStore && (
                             <CloseButton label='Close' onClose={onClose} />
                         )}
-                        <SubmitButton 
-                        label="Save User" 
-                        loading={loadingStore} 
-                        loadingLabel="Saving User..." />
+                        <SubmitButton
+                            label="Save User"
+                            loading={loadingStore}
+                            loadingLabel="Saving User..." />
                     </div>
                 </form>
             </Modal>
