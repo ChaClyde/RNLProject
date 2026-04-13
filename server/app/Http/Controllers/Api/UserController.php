@@ -6,11 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
+    public function loadUsers() {
+        $users = User::with(['gender'])
+        ->where('tbl_users.is_deleted', false)
+        ->get();
+
+        return response() -> json ([
+            'users' => $users
+        ], 200);
+    }
+
     public function storeUser(Request $request) {
         $validated = $request->validate([
             'first_name' => ['required', 'max:55'],
