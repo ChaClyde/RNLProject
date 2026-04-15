@@ -6,9 +6,11 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 interface UserListProps {
     onAddUser: () => void;
+    onEditUser: (user: UserColumns | null) => void;
+    refreshKey: boolean
 }
 
-const UserList: FC<UserListProps> = ({ onAddUser }) => {
+const UserList: FC<UserListProps> = ({ onAddUser, onEditUser, refreshKey }) => {
     const [loadingUsers, setLoadingUsers] = useState(false)
     const [users, setUsers] = useState<UserColumns[]>([])
 
@@ -50,8 +52,8 @@ const UserList: FC<UserListProps> = ({ onAddUser }) => {
     };
 
     useEffect(() => {
-        handleLoadUsers()
-    }, []);
+        handleLoadUsers();
+    }, [refreshKey]);
 
     return (
         <>
@@ -135,12 +137,15 @@ const UserList: FC<UserListProps> = ({ onAddUser }) => {
                                             <div className="flex gap-4">
                                                 <button
                                                     type='button'
-                                                    className='text-green-600 font-medium cursor-pointer hover:underline'>
+                                                    className='text-green-600 font-medium cursor-pointer hover:underline'
+                                                    onClick={() => onEditUser(user)}
+                                                >
                                                     Edit
                                                 </button>
                                                 <button
                                                     type='button'
-                                                    className='text-red-600 font-medium cursor-pointer hover:underline'>
+                                                    className='text-red-600 font-medium cursor-pointer hover:underline'
+                                                >
                                                     Delete
                                                 </button>
                                             </div>
