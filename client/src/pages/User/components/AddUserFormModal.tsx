@@ -4,16 +4,16 @@ import Modal from '../../../components/Modal';
 import FloatingLabelSelect from '../../../components/Select/FloatingLabelSelect';
 import SubmitButton from '../../../components/Button/SubmitButton';
 import CloseButton from '../../../components/Button/CloseButton';
-import type { GenderColumns } from '../../../interfaces/GendersColumns';
 import GenderService from '../../../services/GenderService';
-import type { UserFieldErrors } from '../../../interfaces/UserFieldErrors';
 import UserService from '../../../services/UserService';
+import type { UserFieldErrors } from '../../../interfaces/UserInterface';
+import type { GenderColumns } from '../../../interfaces/GenderInterface';
 
 interface AddUserFormModalProps {
     onUserAdded: (message: string) => void
     isOpen: boolean
     onClose: () => void
-    refreshKey: () => void
+    refreshKey: () => void  
 }
 
 const AddUserFormModal: FC<AddUserFormModalProps> = ({
