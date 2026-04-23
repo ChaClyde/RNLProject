@@ -62,7 +62,7 @@ const FloatingLabelInput: FC<FloatingLabelinputProps> = ({
                 >
                     {label}
                     {required && (<span className="text-red-600 ml-1 ">*</span>
-                    )}  
+                    )}
                 </label>
             </div>
             {errors && errors.length > 0 && (
@@ -72,4 +72,4 @@ const FloatingLabelInput: FC<FloatingLabelinputProps> = ({
     )
 }
 
-export default FloatingLabelInput
+export default FloatingLabelInput;

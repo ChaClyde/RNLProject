@@ -170,7 +170,7 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({
                                     onChange={(e) => setGender(e.target.value)}
                                     required
                                     errors={errors.gender}
-                                >
+                                    >
                                     {loadingGenders ? (
                                         <option value="">Loading...</option>
                                     ) : (

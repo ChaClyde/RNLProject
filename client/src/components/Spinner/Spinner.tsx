@@ -32,4 +32,4 @@ const Spinner: FC<SpinnerProps> = ({ size}) => {
   )
 }
 
-export default Spinner
+export default Spinner;

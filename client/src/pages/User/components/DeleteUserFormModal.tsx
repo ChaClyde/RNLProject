@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react"
+import { useEffect, useState, type FC, type FormEvent } from "react"
 import Modal from "../../../components/Modal"
 import type { UserColumns } from "../../../interfaces/UserInterface"
 import CloseButton from "../../../components/Button/CloseButton"

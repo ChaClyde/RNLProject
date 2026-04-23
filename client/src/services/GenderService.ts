@@ -3,7 +3,7 @@ import AxiosInstance from "./AxiosInstance";
 const GenderService = {
     loadGenders: async () => {
         try {
-            const response = await AxiosInstance.get('/gender/loadGenders')
+            const response = await AxiosInstance.get(`/gender/loadGenders`)
             return response;
         } catch (error) {
             throw error;
@@ -11,7 +11,7 @@ const GenderService = {
     },
     storeGender: async (data: any) => {
         try {
-            const response = await AxiosInstance.post('/gender/storeGender', data);
+            const response = await AxiosInstance.post(`/gender/storeGender`, data);
             return response;
         } catch (error) {
             throw error;

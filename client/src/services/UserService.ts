@@ -3,8 +3,8 @@ import AxiosInstance from "./AxiosInstance";
 const UserService = {
     loadUsers: async () => {
         try {
-            const resoponse = await AxiosInstance.get('/user/loadUsers')
-            return resoponse;
+            const response = await AxiosInstance.get('/user/loadUsers')
+            return response;
         } catch (error) {
             throw error;
         }

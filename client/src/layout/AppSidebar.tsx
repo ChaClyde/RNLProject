@@ -6,7 +6,7 @@ const AppSidebar = () => {
 
     const sidebarItems = [
         {
-            path: '/',
+            path: '/genders',
             text: 'Genders',
         },
         {
@@ -27,7 +27,7 @@ const AppSidebar = () => {
                     } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 py-4 overflow-y-auto bg-blue-50 border-e border-default">
+                <div className="h-full px-3 py-4 overflow-y-auto bg-blue-300 border-e border-default">
                     <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5">
                         <img src="https://flowbite.com/docs/images/logo.svg" className="h-6 me-3" alt="Flowbite Logo" />
                         <span className="self-center text-lg text-heading font-semibold whitespace-nowrap">Flowbite</span>
