@@ -13,7 +13,7 @@ class UserController extends Controller
     public function loadUsers() {
         $users = User::with(['gender'])
         ->where('tbl_users.is_deleted', false)
-        ->get();
+        ->paginate(15);
 
         return response() -> json ([
             'users' => $users
@@ -66,7 +66,7 @@ class UserController extends Controller
         $age = date_diff(date_create($validated['birth_date']), date_create('now'))->y;
 
         $user->update([
-            'first_name' => $validated['first_name'],   
+            'first_name' => $validated['first_name'],
             'middle_name' => $validated['middle_name'],
             'last_name' => $validated['last_name'],
             'suffix_name' => $validated['suffix_name'],
